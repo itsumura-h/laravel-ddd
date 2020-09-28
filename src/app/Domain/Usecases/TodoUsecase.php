@@ -2,6 +2,8 @@
 
 namespace App\Domain\Usecases;
 
+use App\Domain\Models\Todo\TodoEntity;
+use App\Domain\Models\ValueObjects\TodoContent;
 use App\Domain\Models\Todo\TodoService;
 
 
@@ -11,7 +13,15 @@ class TodoUsecase
 		$this->service = new TodoService();
 	}
 
-    public function index(){
-        $this->service->index();
+    public function getTodoList(): array
+    {
+        $todoObjList = $this->service->getTodoList();
+        return $todoObjList;
+    }
+
+    public function storeTodo(string $content): void
+    {
+        $content = new TodoContent($content);
+        $this->service->storeTodo($content);
     }
 }

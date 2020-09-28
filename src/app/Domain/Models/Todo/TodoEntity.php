@@ -16,4 +16,10 @@ class TodoEntity
         $this->content = $content;
     }
 
+    public function toDict(){
+        return [
+            'id' => $this->id->get(),
+            'content' => $this->content->get()
+        ];
+    }
 }

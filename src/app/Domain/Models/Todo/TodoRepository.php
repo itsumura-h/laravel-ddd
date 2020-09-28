@@ -3,12 +3,20 @@
 namespace App\Domain\Models\Todo;
 use Log;
 use DB;
+use Illuminate\Support\Collection;
 
 class TodoRepository
 {
-    public function get_todo_list(){
-        Log::debug('===');
-        $todo_list = DB::table('todo')->get();
-        return $todo_list;
+    public function getTodoList(): Collection
+    {
+        $todoList = DB::table('todo')->get();
+        return $todoList;
+    }
+
+    public function storeTodo(string $content): void
+    {
+        DB::table('todo')->insert([
+            'content' => $content
+        ]);
     }
 }

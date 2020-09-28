@@ -15,14 +15,21 @@ class TodoService
 		$this->repository = new TodoRepository();
     }
 
-    public function index(){
-        $todo_list = $this->repository->get_todo_list();
-        $todo_obj_list = [];
-        foreach($todo_list as $todo){
-            $id = new TodoId($todo['id']);
-            $content = new TodoContent($todo['content']);
+    public function getTodoList(): array
+    {
+        $todoList = $this->repository->getTodoList();
+        $todoObjList = [];
+        foreach($todoList as $todo){
+            $id = new TodoId($todo->id);
+            $content = new TodoContent($todo->content);
             $todo = new TodoEntity($id, $content);
-            Log::debug(print_r($todo, true));
+            $todoObjList[] = $todo;
         }
+        return $todoObjList;
+    }
+
+    public function storeTodo(TodoContent $content): void
+    {
+        $this->repository->storeTodo($content->get());
     }
 }
