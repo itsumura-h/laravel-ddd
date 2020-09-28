@@ -5,11 +5,12 @@ namespace App\Domain\Models\Todo;
 use App\Domain\Models\ValueObjects\TodoId;
 use App\Domain\Models\ValueObjects\TodoContent;
 use App\Domain\Models\Todo\TodoEntity;
+use App\Domain\Models\Todo\ITodoRepository;
 
 
 class TodoService
 {
-    function __construct($repository){
+    function __construct(ITodoRepository $repository){
 		$this->repository = $repository;
     }
 
