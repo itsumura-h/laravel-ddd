@@ -16,7 +16,12 @@ class TodoUsecase
     public function getTodoList(): array
     {
         $todoObjList = $this->service->getTodoList();
-        return $todoObjList;
+
+        $todoList = [];
+        foreach($todoObjList as $todoObj){
+            $todoList[] = $todoObj->toDict();
+        }
+        return $todoList;
     }
 
     public function storeTodo(string $content): void

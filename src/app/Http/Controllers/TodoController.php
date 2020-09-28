@@ -9,12 +9,7 @@ class TodoController extends Controller
 {
     public function index(){
         $todoUsecase = new TodoUsecase();
-        $todoObjList = $todoUsecase->getTodoList();
-
-        $todoList = [];
-        foreach($todoObjList as $todoObj){
-            $todoList[] = $todoObj->toDict();
-        }
+        $todoList = $todoUsecase->getTodoList();
         return view('pages.todo.index', ['todoList'=>$todoList]);
     }
 
