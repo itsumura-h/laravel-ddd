@@ -32,4 +32,19 @@ class RdbRepository implements ITodoRepository
             'content' => $content
         ]);
     }
+
+    public function getTodoRow(int $id):TodoEntity
+    {
+        $todo = DB::table('todo')->where('id', '=', $id)->first();
+        $todo = new TodoEntity(
+            new TodoId($todo->id),
+            new TodoContent($todo->content),
+        );
+        return $todo;
+    }
+
+    public function deleteTodo(TodoId $id):void
+    {
+        DB::table('todo')->delete($id->get());
+    }
 }

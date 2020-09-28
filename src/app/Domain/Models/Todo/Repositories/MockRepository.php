@@ -27,4 +27,17 @@ class MockRepository implements ITodoRepository
     {
 
     }
+
+    public function getTodoRow(int $id):TodoEntity
+    {
+        return new TodoEntity(
+            new TodoId($id),
+            new TodoContent('aaaaa')
+        );
+    }
+
+    public function deleteTodo(TodoId $id):void
+    {
+
+    }
 }

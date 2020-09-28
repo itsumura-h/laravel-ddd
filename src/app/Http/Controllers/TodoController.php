@@ -19,4 +19,16 @@ class TodoController extends Controller
         $todoUsecase->storeTodo($content);
         return redirect('/todo');
     }
+
+    public function show($id){
+        $todoUsecase = new TodoUsecase();
+        $todo = $todoUsecase->getTodoRow($id);
+        return view('pages.todo.show', ['todo'=>$todo]);
+    }
+
+    public function destroy($id){
+        $todoUsecase = new TodoUsecase();
+        $todoUsecase->deleteTodo($id);
+        return redirect('/todo');
+    }
 }
